@@ -1,14 +1,22 @@
-# 📩 SMS Spam Detection using NLP & Machine Learning
+# 📩 SMS Spam Detection Web App  
+### NLP-Based Spam Classification using TF-IDF & Machine Learning
+
+---
 
 ## 🚀 Project Overview
-This project builds a machine learning model to classify SMS messages as **Spam** or **Ham (Not Spam)** using Natural Language Processing (NLP) techniques.
 
-The goal is to develop an end-to-end text classification pipeline including:
-- Data preprocessing
-- Text vectorization using TF-IDF
-- Model training
-- Model evaluation using precision, recall, F1-score
-- Visualization using confusion matrix
+This project builds and deploys an end-to-end **SMS Spam Detection system** using Natural Language Processing (NLP) and Machine Learning.
+
+It includes:
+
+- Data preprocessing & label encoding  
+- Text vectorization using TF-IDF  
+- Model comparison (Naive Bayes vs Logistic Regression)  
+- Handling class imbalance  
+- Performance evaluation using precision, recall & F1-score  
+- Interactive Streamlit web application  
+
+The final output is a deployable web app that allows users to test custom messages in real time.
 
 ---
 
@@ -19,34 +27,41 @@ The goal is to develop an end-to-end text classification pipeline including:
 - **Ham:** 4825 (~86%)  
 - **Spam:** 747 (~14%)  
 
-The dataset is imbalanced, making recall and precision important evaluation metrics beyond simple accuracy.
+The dataset is imbalanced, making **spam recall** a critical evaluation metric.
 
 ---
 
 ## 🧠 Methodology
 
 ### 1️⃣ Data Cleaning
-- Removed unnecessary columns
-- Renamed columns for clarity
+- Removed unnecessary columns  
+- Renamed columns for clarity  
 - Encoded labels:
-  - Ham → 0
-  - Spam → 1
-
-### 2️⃣ Text Vectorization
-Used **TF-IDF (Term Frequency – Inverse Document Frequency)** to convert text messages into numerical feature vectors.
-
-- Total extracted features: 8672 unique words
-
-### 3️⃣ Train-Test Split
-- 80% Training Data
-- 20% Testing Data
-- Random state fixed for reproducibility
+  - Ham → 0  
+  - Spam → 1  
 
 ---
 
-## 🤖 Models Used
+### 2️⃣ Text Vectorization
+
+Used **TF-IDF (Term Frequency – Inverse Document Frequency)** to convert text messages into numerical feature vectors.
+
+- Total features extracted: **8672 unique words**
+
+---
+
+### 3️⃣ Train-Test Split
+
+- 80% Training Data  
+- 20% Testing Data  
+- `random_state=42` for reproducibility  
+
+---
+
+## 🤖 Models Implemented
 
 ### 🔹 Multinomial Naive Bayes
+
 - Accuracy: **96.2%**
 - Spam Precision: **1.00**
 - Spam Recall: **0.72**
@@ -59,63 +74,97 @@ Confusion Matrix:
 | Actual Ham    | 965           | 0              |
 | Actual Spam   | 42            | 108            |
 
-The model is very precise (no false positives) but misses some spam messages.
+The model is highly precise (no false positives) but misses some spam messages.
 
 ---
 
-### 🔹 Logistic Regression
-(To be filled after evaluation)
+### 🔹 Logistic Regression (Balanced)
+
+Implemented using:
+
+LogisticRegression(max_iter=1000, class_weight='balanced')
+
+Results:
+
+- Accuracy: **96%**
+- Spam Recall: **89%**
+- Spam Precision: **~93%**
+- Reduced missed spam messages from 41 → 16
+
+Confusion Matrix:
+
+|                | Predicted Ham | Predicted Spam |
+|---------------|---------------|----------------|
+| Actual Ham    | 955           | 10             |
+| Actual Spam   | 16            | 134            |
+
+Balanced Logistic Regression significantly improved recall while maintaining strong precision.
 
 ---
 
-## 📈 Evaluation Metrics
+## 📈 Model Comparison
 
-Since the dataset is imbalanced, evaluation was done using:
+| Model | Spam Recall | False Positives |
+|--------|------------|----------------|
+| Naive Bayes | 72% | 0 |
+| Logistic Regression | 73% | 0 |
+| **Logistic (Balanced)** | **89%** | 10 |
 
-- Accuracy
-- Precision
-- Recall
-- F1 Score
-- Confusion Matrix
+Balanced Logistic Regression performs best in real-world spam detection scenarios.
 
-Special focus was placed on **Spam Recall**, as missing spam messages is more critical than falsely flagging ham.
+---
+
+## 🌐 Streamlit Web Application
+
+An interactive web application was built using **Streamlit** to:
+
+- Accept custom SMS input  
+- Compare both models side-by-side  
+- Display spam probability scores  
+- Visualize predictions in real time  
+
 
 ---
 
 ## 🛠️ Technologies Used
 
-- Python
-- Pandas
-- NumPy
-- Scikit-learn
-- Matplotlib
-- Seaborn
-- Jupyter Notebook
+- Python  
+- Pandas  
+- NumPy  
+- Scikit-learn  
+- Matplotlib  
+- Seaborn  
+- Streamlit  
+- Joblib  
+- Git & GitHub  
+
+---
+
 
 ---
 
 ## 🔮 Future Improvements
 
-- Hyperparameter tuning
-- Advanced text preprocessing (stemming, lemmatization)
-- Class imbalance handling
-- Deploying model as a REST API
-- Building a web interface for real-time predictions
+- Hyperparameter tuning using GridSearchCV  
+- Advanced text preprocessing (stemming, lemmatization, n-grams)  
+- Cross-validation  
+- Deployment on Streamlit Cloud  
+- Integration with real SMS APIs  
 
 ---
 
-## 📌 Key Learning Outcomes
+## 🎓 Key Learning Outcomes
 
-- End-to-end NLP pipeline implementation
-- Text vectorization using TF-IDF
-- Handling imbalanced datasets
-- Model comparison and evaluation
-- Git version control and project structuring
+- End-to-end NLP pipeline development  
+- TF-IDF feature engineering  
+- Handling imbalanced classification problems  
+- Model comparison & evaluation  
+- Building and deploying ML web applications  
+- Version control and structured project organization  
 
 ---
 
-## 📎 How to Run the Project
+## 👩‍💻 Author
 
-1. Clone the repository
-2. Install dependencies:
+Built as a hands-on NLP & Machine Learning project focused on real-world spam detection and deployable ML systems. 
 
